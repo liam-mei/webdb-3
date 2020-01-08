@@ -27,3 +27,24 @@ SELECT o.Id AS order_id, c.CompanyName as customer_company_name, e.LastName AS e
 FROM "Order" AS o
 JOIN Customer AS c ON o.CustomerId = c.Id
 JOIN Employee AS e ON o.EmployeeId = e.Id
+
+-- Displays CategoryName and a new column called Count
+-- that shows how many products are in each category. Shows 8 records.
+SELECT c.CategoryName, COUNT(CategoryId) as Count
+FROM Product AS p
+JOIN Category AS c
+ON p.CategoryId = c.Id
+GROUP BY CategoryId
+
+-- Display OrderID and a column called ItemCount
+-- that shows the total number of products placed on the order. Shows 196 records.
+
+-- I'm not sure if they're looking for the Total number of items in the order
+SELECT OrderId, SUM(Quantity) as ItemQuantityInOrder
+FROM OrderDetail
+GROUP BY OrderId
+
+-- or the number of distinct products in the order
+SELECT OrderId, COUNT(Quantity) as DistinctProducts
+FROM OrderDetail
+GROUP BY OrderId
