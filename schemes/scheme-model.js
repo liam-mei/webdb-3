@@ -15,9 +15,11 @@ function findById(id) {
 }
 
 function findSteps(scheme_id) {
-  db("steps")
-    .where({ scheme_id })
-    .orderBy("step_number");
+  return db("steps")
+    .join("schemes", "schemes.id", "steps.scheme_id")
+    .select("steps.id as step_id", "steps.step_number", "steps.instructions", "schemes.scheme_name")
+    .where("schemes.id", scheme_id)
+    .orderBy("steps.step_number");
 }
 
 async function add(scheme) {

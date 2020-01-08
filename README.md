@@ -36,7 +36,13 @@ Write helpers methods in `./schemes/scheme-model.js` that match the following sp
   - On an invalid `id`, resolves to `null`.
 - `findSteps(id)`:
   - Expects a scheme `id`.
-  - Resolves to an array of all correctly ordered step for the given scheme: `[ { id: 17, scheme_name: 'Find the Holy Grail', step_number: 1, instructions: 'quest'}, { id: 18, scheme_name: 'Find the Holy Grail', step_number: 2, instructions: '...and quest'}, etc. ]`.
+  - Resolves to an array of all correctly ordered step for the given scheme:
+```js
+[
+  { id: 17, scheme_name: 'Find the Holy Grail', step_number: 1, instructions: 'quest'},
+  { id: 18, scheme_name: 'Find the Holy Grail', step_number: 2, instructions: '...and quest'}, etc.
+]
+```
   - This array should include the `scheme_name` _not_ the `scheme_id`.
 - `add(scheme)`:
   - Expects a scheme object.
